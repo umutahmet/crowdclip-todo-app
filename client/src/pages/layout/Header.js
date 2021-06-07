@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const Header = () => {
   return (
     <div className="container mx-auto">
-        <div className="flex items-center justify-between p-2">
+        <div className="flex items-center justify-between p-6">
             <img src="logo.png" alt="Crowdclip Todo App" />
             <div>
                 <Link to="/signin" className="text-sm font-medium hover:underline">Sign in</Link>
