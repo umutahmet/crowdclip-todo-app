@@ -13,13 +13,13 @@ const Signup = () => {
                         <h1 className="text-5xl font-black tracking-tighter mb-6">Sign up</h1>
                         <form>
                             <div className="mb-4">
-                                <input placeholder="Your first name" className="border border-gray-300 bg-white text-gray-900 appearance-none block w-full rounded-md py-3 px-4 focus:border-blue-500 focus:outline-none" />    
+                                <input placeholder="Your first name" type="text" className="border border-gray-300 bg-white text-gray-900 appearance-none block w-full rounded-md py-3 px-4 focus:border-blue-500 focus:outline-none" />    
                             </div>
                             <div className="mb-4">
-                                <input placeholder="Your email" className="border border-gray-300 bg-white text-gray-900 appearance-none block w-full rounded-md py-3 px-4 focus:border-blue-500 focus:outline-none" />
+                                <input placeholder="Your email" type="email" className="border border-gray-300 bg-white text-gray-900 appearance-none block w-full rounded-md py-3 px-4 focus:border-blue-500 focus:outline-none" />
                             </div>
                             <div className="mb-4">
-                                <input placeholder="Enter a password" className="border border-gray-300 bg-white text-gray-900 appearance-none block w-full rounded-md py-3 px-4 focus:border-blue-500 focus:outline-none" />
+                                <input placeholder="Enter a password" type="password" className="border border-gray-300 bg-white text-gray-900 appearance-none block w-full rounded-md py-3 px-4 focus:border-blue-500 focus:outline-none" />
                             </div>
                             <button className="block w-full py-4 px-4 bg-primary text-white text-sm font-medium tracking-wide rounded-lg transition-all hover:bg-secondary">Sign up — Free</button>
                         </form>
