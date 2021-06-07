@@ -1,12 +1,12 @@
-import React from "react";
-import { Link, Redirect } from "react-router-dom";
-import { useAuth } from "../redux/hooks";
+import React from "react"
+import { Link, Redirect } from "react-router-dom"
+import { useAuth } from "../redux/hooks"
 
 const Homepage = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth()
 
   if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/dashboard" />
   }
 
   return (
@@ -22,7 +22,7 @@ const Homepage = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Homepage;
+export default Homepage
