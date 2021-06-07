@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify'
 
 import { loadUser } from './redux/actions/auth'
 import setAuthToken from './helpers/setAuthToken'
+import Header from './pages/layout/Header'
 import Homepage from './pages/Homepage'
 import Routes from './pages/routing/Routes'
 
@@ -25,6 +26,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <>
+          <Header />
           <ToastContainer newestOnTop autoClose={2000} />
 
           <Switch>
