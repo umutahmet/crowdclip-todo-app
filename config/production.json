@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://umut:umut@cluster0.psaw4.mongodb.net/crowdclip?retryWrites=true&w=majority",
+    "jwtSecret": "crowdclip"
+}
