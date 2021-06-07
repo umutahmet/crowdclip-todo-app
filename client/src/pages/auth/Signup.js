@@ -23,6 +23,10 @@ const Signup = () => {
                             </div>
                             <button className="block w-full py-4 px-4 bg-primary text-white text-sm font-medium tracking-wide rounded-lg transition-all hover:bg-secondary">Sign up — Free</button>
                         </form>
+                        <div className="text-xs text-center text-gray-500 mt-8">
+                            Have an account? <br />
+                            <Link to="/signin" className="text-primary font-medium hover:underline hover:text-black">Sign in</Link>
+                        </div>
                     </div>
                 </div>
             </div>
