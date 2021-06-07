@@ -17,8 +17,8 @@ const Homepage = () => {
         <Link to="/signup">
           Sign Up
         </Link>
-        <Link to="/login">
-          Login
+        <Link to="/signin">
+          Sign In
         </Link>
       </div>
     </div>
