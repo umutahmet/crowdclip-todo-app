@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { Link, Redirect } from "react-router-dom"
-import { toast } from 'react-toastify'
 import { useAuth } from './../../redux/hooks'
 
 const Signup = () => {
