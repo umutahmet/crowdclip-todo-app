@@ -26,7 +26,7 @@ function App() {
             <Router>
                 <>
                     <Header />
-                    <ToastContainer newestOnTop autoClose={2000} />
+                    <ToastContainer newestOnTop autoClose={4000} />
 
                     <Switch>
                         <Route exact path="/" component={Homepage} />
