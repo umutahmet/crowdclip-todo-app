@@ -21,7 +21,7 @@ export const formatDate = (date, excludeTime) => {
     minutes = checkZero(minutes)
 
     if (excludeTime) {
-    return day + '/' + month + '/' + year
+        return day + '/' + month + '/' + year
     }
 
     return day + '/' + month + '/' + year + ' ' + hour + ':' + minutes

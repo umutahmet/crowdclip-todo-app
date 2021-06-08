@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 const TodoEmptyState = () => {
     return (
@@ -8,7 +8,10 @@ const TodoEmptyState = () => {
                     <span className="mr-4">No tasks!</span>
                     <img src="icons/popper.png" alt="" className="w-8 h-8 inline-block" />
                 </h2>
-                <p>Start killing that list; <br />add a task above!</p>
+                <p>
+                    Start killing that list; <br />
+                    add a task above!
+                </p>
             </div>
         </section>
     )
