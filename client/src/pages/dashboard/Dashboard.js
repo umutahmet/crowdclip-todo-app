@@ -34,17 +34,23 @@ const Dashboard = () => {
 
     return (
         <div className="container mx-auto mt-48">
-            <h1 className="text-5xl font-black tracking-tighter mb-6">
-                Welcome back, <br /> <span className="capitalize">{user?.name}</span>!
+            <h1 className="text-5xl mb-6">
+                Welcome back, <br />{' '}
+                <span className="text-secondary font-black capitalize">{user?.name}!</span>
             </h1>
-            <TodoForm
-                text={text}
-                reminderAt={reminderAt}
-                onChange={handleTodoFormUpdate}
-                onSubmit={handleAddTodo}
-            />
-            {!todos.length && <TodoEmptyState />}
-            {todos.length && <TodoListing todos={todos} />}
+            <div className="flex">
+                <div className="w-2/3 pr-16">
+                    {todos.length ? <TodoListing todos={todos} /> : <TodoEmptyState />}
+                </div>
+                <div className="w-1/3">
+                    <TodoForm
+                        text={text}
+                        reminderAt={reminderAt}
+                        onChange={handleTodoFormUpdate}
+                        onSubmit={handleAddTodo}
+                    />
+                </div>
+            </div>
         </div>
     )
 }
