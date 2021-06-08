@@ -11,16 +11,18 @@ const Header = () => {
         return null
     }
 
+    const authenticatedClassess = isAuthenticated ? 'px-8 mt-8 shadow-2xl rounded-2xl' : ''
+
     return (
         <div className="fixed top-0 w-full">
             <div className="container mx-auto">
-                <div className="flex items-center justify-between p-6">
+                <div className={`flex items-center justify-between p-4 ${authenticatedClassess}`}>
                     <Link to="/" className="inline-block"><img src="logo.png" alt="Crowdclip Todo App" /></Link>
                     <div>
                         {isAuthenticated && (
                             <>
                                 <Link to="/dashboard" className="text-sm font-medium hover:underline">Dashboard</Link>
-                                <Link to="/profile" className="text-sm font-medium capitalize ml-8 hover:underline">{user?.name}</Link>
+                                <Link to="/profile" className="text-sm font-medium ml-8 hover:underline"><span className="capitalize">{user?.name}</span></Link>
                                 <Link
                                     to="/signin"
                                     onClick={() => logoutUser()}
