@@ -20,12 +20,10 @@ import {
   TOGGLE_COMPLETE_ERROR
 } from './types'
 import { toast } from 'react-toastify'
-import { loadUser } from './auth'
 
 // Get All Todos
 export const getTodos = () => async (dispatch) => {
   try {
-    dispatch(loadUser())
     dispatch({
       type: GET_TODOS
     })
@@ -81,6 +79,8 @@ export const addTodo = (formData) => async (dispatch) => {
       type: ADD_TODO_SUCCESS,
       payload: res.data
     })
+
+    dispatch(getTodos())
 
     toast.success('Todo added successfully')
   } catch (err) {
