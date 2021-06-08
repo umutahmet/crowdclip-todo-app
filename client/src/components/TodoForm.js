@@ -5,8 +5,8 @@ const TodoForm = ({ text, reminderAt, onChange, onSubmit }) => {
         <section className="mt-16 p-8 bg-grey rounded-xl">
             <h2 className="text-lg font-bold mb-4">Add new task</h2>
             <form onSubmit={onSubmit} noValidate>
-                <div className="flex">
-                    <div className="w-96 mr-4">
+                <div className="flex flex-col">
+                    <div className="mb-4">
                         <label
                             htmlFor="text"
                             className="inline-block text-gray-600 text-xs uppercase mb-2"
@@ -24,7 +24,7 @@ const TodoForm = ({ text, reminderAt, onChange, onSubmit }) => {
                             className="border border-gray-300 bg-white text-gray-900 appearance-none block w-full rounded-md py-3 px-4 focus:border-blue-500 focus:outline-none"
                         />
                     </div>
-                    <div className="w-48 mr-4">
+                    <div className="mb-4">
                         <label
                             htmlFor="reminderAt"
                             className="inline-block text-gray-600 text-xs uppercase mb-2"
