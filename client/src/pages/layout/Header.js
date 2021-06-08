@@ -14,9 +14,9 @@ const Header = () => {
     const authenticatedClassess = isAuthenticated ? 'px-8 mt-8 shadow-2xl rounded-2xl' : ''
 
     return (
-        <div className="fixed top-0 w-full">
+        <div className="fixed z-10 top-0 w-full">
             <div className="container mx-auto">
-                <div className={`flex items-center justify-between p-4 ${authenticatedClassess}`}>
+                <div className={`flex items-center justify-between p-4 bg-white ${authenticatedClassess}`}>
                     <Link to="/" className="inline-block"><img src="logo.png" alt="Crowdclip Todo App" /></Link>
                     <div>
                         {isAuthenticated && (
