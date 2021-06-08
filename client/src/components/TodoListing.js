@@ -7,7 +7,7 @@ const TodoListing = ({ todos }) => {
     }
 
     return (
-        <section className="w-3/5 my-16 min-h-96">
+        <section className="my-16 min-h-96">
             <header className="mb-4 p-4">
                 <h2 className="font-bold">
                     You have {todos.length} outstanding task{todos.length > 1 ? 's' : ''}...
