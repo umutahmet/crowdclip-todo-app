@@ -1,9 +1,13 @@
 import React from 'react'
 
-const TodoForm = ({ text, reminderAt, onChange, onSubmit }) => {
+const TodoForm = ({ text, reminderAt, onChange, onSubmit, isEditing }) => {
+    const isEditingClasses = isEditing ? 'border-2 border-primary' : ''
+
     return (
-        <section className="mt-16 p-8 bg-grey rounded-xl">
-            <h2 className="text-lg font-bold mb-4">Add new task</h2>
+        <section className={`mt-16 p-8 bg-grey rounded-xl ${isEditingClasses}`}>
+            <h2 className="text-lg font-bold mb-4">
+                {isEditing ? 'Editing task' : 'Add new task'}
+            </h2>
             <form onSubmit={onSubmit} noValidate>
                 <div className="flex flex-col">
                     <div className="mb-4">
@@ -41,7 +45,7 @@ const TodoForm = ({ text, reminderAt, onChange, onSubmit }) => {
                     </div>
                     <div className="flex flex-col-reverse">
                         <button className="inline-block py-4 px-12 bg-primary text-white text-sm font-medium tracking-wide rounded-lg transition-all hover:bg-secondary">
-                            Add
+                            {isEditing ? 'Update' : 'Add'}
                         </button>
                     </div>
                 </div>

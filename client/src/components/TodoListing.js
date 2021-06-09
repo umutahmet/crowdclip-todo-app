@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Todo from './Todo'
 
-const TodoListing = ({ label, todos, onDelete, onToggleComplete }) => {
+const TodoListing = ({ label, todos, onDelete, onEdit, onToggleComplete }) => {
     const [selectedTodos, setSelectedTodos] = useState([])
 
     const handleToggleSelected = (id) => () => {
@@ -42,6 +42,7 @@ const TodoListing = ({ label, todos, onDelete, onToggleComplete }) => {
                     todo={todo}
                     onToggleSelected={handleToggleSelected}
                     onToggleComplete={onToggleComplete}
+                    onEdit={onEdit}
                 />
             ))}
         </section>

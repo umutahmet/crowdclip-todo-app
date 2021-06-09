@@ -79,6 +79,7 @@ router.put(
             // Update the todo
             if (todo) {
                 todo.text = req.body.text;
+                todo.reminderAt = req.body.reminderAt;
             }
 
             await todo.save();

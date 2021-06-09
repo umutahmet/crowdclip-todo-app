@@ -5,17 +5,19 @@ import TodoEmptyState from '../../components/TodoEmptyState'
 import TodoListing from '../../components/TodoListing'
 
 const initialState = {
+    id: '',
     text: '',
     reminderAt: ''
 }
 
 const Dashboard = () => {
     const { user } = useAuth()
-    const { todos, getTodos, addTodo, deleteTodos, toggleCompleteTodo } = useTodo()
+    const { todos, getTodos, addTodo, deleteTodos, toggleCompleteTodo, updateTodo } = useTodo()
     const [formData, setFormData] = useState(initialState)
     const [incompleteTodos, setIncompleteTodos] = useState([])
     const [completeTodos, setCompleteTodos] = useState([])
-    const { text, reminderAt } = formData
+    const [isEditing, setIsEditing] = useState(false)
+    const { id, text, reminderAt } = formData
 
     // onload, get all todos
     useEffect(() => {
@@ -34,10 +36,20 @@ const Dashboard = () => {
             [e.target.name]: e.target.value
         })
 
-    const handleAddTodo = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        addTodo({ text, reminderAt })
+        if (isEditing) {
+            updateTodo({ text, reminderAt }, id)
+        } else {
+            addTodo({ text, reminderAt })
+        }
         setFormData(initialState)
+    }
+
+    const handleEditTodo = (id, text, reminderAt) => (e) => {
+        e.preventDefault()
+        setIsEditing(true)
+        setFormData({ id, text, reminderAt: reminderAt || '' })
     }
 
     const handleDeleteTodos = (ids) => {
@@ -62,6 +74,7 @@ const Dashboard = () => {
                             label="outstanding"
                             todos={incompleteTodos}
                             onDelete={handleDeleteTodos}
+                            onEdit={handleEditTodo}
                             onToggleComplete={handleToggleCompleteTodo}
                         />
                     )}
@@ -70,6 +83,7 @@ const Dashboard = () => {
                             label="complete"
                             todos={completeTodos}
                             onDelete={handleDeleteTodos}
+                            onEdit={handleEditTodo}
                             onToggleComplete={handleToggleCompleteTodo}
                         />
                     )}
@@ -79,7 +93,8 @@ const Dashboard = () => {
                         text={text}
                         reminderAt={reminderAt}
                         onChange={handleTodoFormUpdate}
-                        onSubmit={handleAddTodo}
+                        onSubmit={handleSubmit}
+                        isEditing={isEditing}
                     />
                 </div>
             </div>
