@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Todo from './Todo'
 
-const TodoListing = ({ todos, onDelete }) => {
+const TodoListing = ({ label, todos, onDelete, onToggleComplete }) => {
     const [selectedTodos, setSelectedTodos] = useState([])
 
     const handleToggleSelected = (id) => () => {
@@ -24,7 +24,7 @@ const TodoListing = ({ todos, onDelete }) => {
         <section className="my-16 min-h-96">
             <header className="mb-4 p-4">
                 <h2 className="font-bold">
-                    You have {todos.length} outstanding task{todos.length > 1 ? 's' : ''}...
+                    You have {todos.length} {label} task{todos.length > 1 ? 's' : ''}...
                 </h2>
                 <div className="text-right">
                     <button
@@ -37,7 +37,12 @@ const TodoListing = ({ todos, onDelete }) => {
                 </div>
             </header>
             {todos.map((todo) => (
-                <Todo key={todo._id} todo={todo} onToggleSelected={handleToggleSelected} />
+                <Todo
+                    key={todo._id}
+                    todo={todo}
+                    onToggleSelected={handleToggleSelected}
+                    onToggleComplete={onToggleComplete}
+                />
             ))}
         </section>
     )

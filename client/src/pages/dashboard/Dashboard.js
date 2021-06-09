@@ -11,14 +11,22 @@ const initialState = {
 
 const Dashboard = () => {
     const { user } = useAuth()
-    const { todos, getTodos, addTodo, deleteTodos } = useTodo()
+    const { todos, getTodos, addTodo, deleteTodos, toggleCompleteTodo } = useTodo()
     const [formData, setFormData] = useState(initialState)
+    const [incompleteTodos, setIncompleteTodos] = useState([])
+    const [completeTodos, setCompleteTodos] = useState([])
     const { text, reminderAt } = formData
 
     // onload, get all todos
     useEffect(() => {
         getTodos()
     }, [getTodos])
+
+    // update incomplete/complete list when todos are updated
+    useEffect(() => {
+        setIncompleteTodos(todos.filter((todo) => !todo.completedAt))
+        setCompleteTodos(todos.filter((todo) => todo.completedAt))
+    }, [todos])
 
     const handleTodoFormUpdate = (e) =>
         setFormData({
@@ -36,6 +44,10 @@ const Dashboard = () => {
         deleteTodos({ ids })
     }
 
+    const handleToggleCompleteTodo = (id) => () => {
+        toggleCompleteTodo(id)
+    }
+
     return (
         <div className="container mx-auto mt-48">
             <h1 className="text-5xl mb-6 px-4">
@@ -44,10 +56,22 @@ const Dashboard = () => {
             </h1>
             <div className="flex">
                 <div className="w-2/3 pr-16">
-                    {todos.length ? (
-                        <TodoListing todos={todos} onDelete={handleDeleteTodos} />
-                    ) : (
-                        <TodoEmptyState />
+                    {!todos.length && <TodoEmptyState />}
+                    {incompleteTodos.length > 0 && (
+                        <TodoListing
+                            label="outstanding"
+                            todos={incompleteTodos}
+                            onDelete={handleDeleteTodos}
+                            onToggleComplete={handleToggleCompleteTodo}
+                        />
+                    )}
+                    {completeTodos.length > 0 && (
+                        <TodoListing
+                            label="complete"
+                            todos={completeTodos}
+                            onDelete={handleDeleteTodos}
+                            onToggleComplete={handleToggleCompleteTodo}
+                        />
                     )}
                 </div>
                 <div className="w-1/3">

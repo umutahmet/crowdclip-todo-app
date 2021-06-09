@@ -1,7 +1,7 @@
 import React from 'react'
 import { getDueDate } from '../helpers/date'
 
-const Todo = ({ todo, onToggleSelected }) => {
+const Todo = ({ todo, onToggleSelected, onToggleComplete }) => {
     return (
         <div className="flex items-center justify-between p-4 mb-2 bg-grey rounded-xl">
             <label htmlFor={`delete-${todo._id}`} className="flex items-center">
@@ -20,8 +20,11 @@ const Todo = ({ todo, onToggleSelected }) => {
                 )}
             </label>
             <div className="ml-2">
-                <button className="font-bold text-primary text-xs hover:underline hover:text-secondary">
-                    Mark as done
+                <button
+                    onClick={onToggleComplete(todo._id)}
+                    className="font-bold text-primary text-xs hover:underline hover:text-secondary"
+                >
+                    {todo.completedAt ? 'Mark as outstanding' : 'Mark as done'}
                 </button>
             </div>
         </div>

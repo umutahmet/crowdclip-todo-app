@@ -145,37 +145,8 @@ router.put("/complete/:id", auth, async (req, res) => {
             return res.status(401).json({ msg: "User not authorized" });
         }
 
-        // Mark todo as completed
-        todo.completedAt = Date.now();
-
-        await todo.save();
-
-        res.json(todo.completedAt);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send("Server Error");
-    }
-});
-
-// @route    PUT api/todos/incomplete/:id
-// @desc     Mark todo as incomplete
-// @access   Private
-router.put("/incomplete/:id", auth, async (req, res) => {
-    try {
-        const todo = await Todo.findById(req.params.id);
-
-        // Check for ObjectId format and todo
-        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/) || !todo) {
-            return res.status(404).json({ msg: "Todo not found" });
-        }
-
-        // Check user if the todo belongs to authenticated user
-        if (todo.user.toString() !== req.user.id) {
-            return res.status(401).json({ msg: "User not authorized" });
-        }
-
-        // Mark todo as incomplete
-        todo.completedAt = undefined;
+        // Toggle todo as completed
+        todo.completedAt = todo.completedAt ? null : Date.now();
 
         await todo.save();
 

@@ -88,7 +88,7 @@ const todoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todos: state.todos.map((todo) =>
-                    todo._id === payload._id ? { ...todo, completed: payload.status } : todo
+                    todo._id === payload._id ? { ...todo, completedAt: payload.status } : todo
                 ),
                 loading: false
             }
