@@ -56,7 +56,7 @@ const Dashboard = () => {
             </h1>
             <div className="flex">
                 <div className="w-2/3 pr-16">
-                    {!todos.length && <TodoEmptyState />}
+                    {!incompleteTodos.length && <TodoEmptyState />}
                     {incompleteTodos.length > 0 && (
                         <TodoListing
                             label="outstanding"

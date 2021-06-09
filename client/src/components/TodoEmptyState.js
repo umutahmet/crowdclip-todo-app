@@ -9,8 +9,8 @@ const TodoEmptyState = () => {
                     <img src="icons/popper.png" alt="" className="w-8 h-8 inline-block" />
                 </h2>
                 <p>
-                    Start killing that list; <br />
-                    add a task above!
+                    Start killing that list <br />
+                    add a task!
                 </p>
             </div>
         </section>
