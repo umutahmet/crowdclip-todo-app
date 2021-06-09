@@ -13,6 +13,7 @@ router.get("/", auth, async (req, res) => {
     try {
         const todos = await Todo.find({
             user: req.user.id,
+            deletedAt: { $exists: false },
         }).sort({ reminderAt: -1, createdAt: -1 });
         res.json(todos);
     } catch (err) {
@@ -110,29 +111,17 @@ router.get("/:id", auth, async (req, res) => {
     }
 });
 
-// @route    DELETE api/todos/:id
-// @desc     Delete a todo
+// @route    DELETE api/todos
+// @desc     Delete an array of todos
 // @access   Private
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/", auth, async (req, res) => {
     try {
-        const todo = await Todo.findById(req.params.id);
+        const todos = await Todo.updateMany(
+            { _id: { $in: req.body.ids }, user: req.user.id },
+            { deletedAt: Date.now() }
+        );
 
-        // Check for ObjectId format and todo
-        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/) || !todo) {
-            return res.status(404).json({ msg: "Todo not found" });
-        }
-
-        // Check user if the todo belongs to authenticated user
-        if (todo.user.toString() !== req.user.id) {
-            return res.status(401).json({ msg: "User not authorized" });
-        }
-
-        // Mark todo as deleted
-        todo.deletedAt = Date.now();
-
-        await todo.save();
-
-        res.json({ msg: "Todo removed" });
+        res.json(req.body.ids);
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");

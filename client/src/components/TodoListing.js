@@ -1,7 +1,21 @@
-import React from 'react'
-import { formatDate } from '../helpers/date'
+import React, { useState } from 'react'
+import Todo from './Todo'
 
-const TodoListing = ({ todos }) => {
+const TodoListing = ({ todos, onDelete }) => {
+    const [selectedTodos, setSelectedTodos] = useState([])
+
+    const handleToggleSelected = (id) => () => {
+        const todos = !selectedTodos.includes(id)
+            ? [...selectedTodos, id]
+            : selectedTodos.filter((entry) => entry !== id)
+
+        setSelectedTodos(todos)
+    }
+
+    const deleteButtonClasses = selectedTodos.length
+        ? 'text-secondary hover:underline hover:text-primary'
+        : ''
+
     if (!todos) {
         return null
     }
@@ -13,32 +27,17 @@ const TodoListing = ({ todos }) => {
                     You have {todos.length} outstanding task{todos.length > 1 ? 's' : ''}...
                 </h2>
                 <div className="text-right">
-                    <a href="" className="font-bold text-gray-400 text-xs">
+                    <button
+                        disabled={!selectedTodos.length}
+                        onClick={() => onDelete(selectedTodos)}
+                        className={`font-bold text-gray-400 text-xs transition-all ${deleteButtonClasses}`}
+                    >
                         Delete
-                    </a>
+                    </button>
                 </div>
             </header>
             {todos.map((todo) => (
-                <div
-                    key={todo._id}
-                    className="flex items-center justify-between p-4 mb-2 bg-grey rounded-xl"
-                >
-                    <div className="flex items-center">
-                        <input type="checkbox" name="delete" className="inline-block mr-2" />
-                        <div className="text-xs">{todo.text}</div>
-                        {todo.reminderAt && (
-                            <div className="text-xs">{formatDate(new Date(todo.reminderAt))}</div>
-                        )}
-                    </div>
-                    <div className="ml-2">
-                        <a
-                            href=""
-                            className="font-bold text-primary text-xs hover:underline hover:text-secondary"
-                        >
-                            Mark as done
-                        </a>
-                    </div>
-                </div>
+                <Todo key={todo._id} todo={todo} onToggleSelected={handleToggleSelected} />
             ))}
         </section>
     )

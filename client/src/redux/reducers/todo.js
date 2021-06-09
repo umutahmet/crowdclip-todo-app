@@ -8,9 +8,9 @@ import {
     ADD_TODO,
     ADD_TODO_SUCCESS,
     ADD_TODO_ERROR,
-    DELETE_TODO,
-    DELETE_TODO_SUCCESS,
-    DELETE_TODO_ERROR,
+    DELETE_TODOS,
+    DELETE_TODOS_SUCCESS,
+    DELETE_TODOS_ERROR,
     UPDATE_TODO,
     UPDATE_TODO_SUCCESS,
     UPDATE_TODO_ERROR,
@@ -34,7 +34,7 @@ const todoReducer = (state = initialState, action) => {
         case GET_TODOS:
         case GET_TODO:
         case ADD_TODO:
-        case DELETE_TODO:
+        case DELETE_TODOS:
         case UPDATE_TODO:
         case TOGGLE_COMPLETE_TODO:
             return {
@@ -62,7 +62,7 @@ const todoReducer = (state = initialState, action) => {
         case GET_TODOS_ERROR:
         case GET_TODO_ERROR:
         case ADD_TODO_ERROR:
-        case DELETE_TODO_ERROR:
+        case DELETE_TODOS_ERROR:
         case UPDATE_TODO_ERROR:
         case TOGGLE_COMPLETE_ERROR:
             return {
@@ -70,10 +70,10 @@ const todoReducer = (state = initialState, action) => {
                 error: payload,
                 loading: false
             }
-        case DELETE_TODO_SUCCESS:
+        case DELETE_TODOS_SUCCESS:
             return {
                 ...state,
-                todos: state.todos.filter((todo) => todo._id !== payload),
+                todos: state.todos.filter((todo) => !payload.includes(todo._id)),
                 loading: false
             }
         case UPDATE_TODO_SUCCESS:

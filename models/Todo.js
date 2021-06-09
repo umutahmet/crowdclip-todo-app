@@ -23,6 +23,9 @@ const TodoSchema = new Schema({
     updatedAt: {
         type: Date,
     },
+    deletedAt: {
+        type: Date,
+    },
 });
 
 module.exports = Todo = mongoose.model("todo", TodoSchema);

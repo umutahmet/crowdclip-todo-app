@@ -4,7 +4,7 @@ import { loadUser, register, login, logout } from './actions/auth'
 import {
     getTodos,
     addTodo,
-    deleteTodo,
+    deleteTodos,
     updateTodo,
     getTodo,
     toggleCompleteTodo
@@ -87,9 +87,9 @@ export function useTodo() {
         [dispatch]
     )
 
-    const boundDeleteTodo = useCallback(
+    const boundDeleteTodos = useCallback(
         (...args) => {
-            return dispatch(deleteTodo(...args))
+            return dispatch(deleteTodos(...args))
         },
         [dispatch]
     )
@@ -123,7 +123,7 @@ export function useTodo() {
         getTodos: boundGetTodos,
         getTodo: boundGetTodo,
         addTodo: boundAddTodo,
-        deleteTodo: boundDeleteTodo,
+        deleteTodos: boundDeleteTodos,
         updateTodo: boundUpdateTodo,
         toggleCompleteTodo: boundToggleCompleteTodo
     }

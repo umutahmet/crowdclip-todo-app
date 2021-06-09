@@ -9,9 +9,9 @@ import {
     ADD_TODO,
     ADD_TODO_SUCCESS,
     ADD_TODO_ERROR,
-    DELETE_TODO,
-    DELETE_TODO_SUCCESS,
-    DELETE_TODO_ERROR,
+    DELETE_TODOS,
+    DELETE_TODOS_SUCCESS,
+    DELETE_TODOS_ERROR,
     UPDATE_TODO,
     UPDATE_TODO_SUCCESS,
     UPDATE_TODO_ERROR,
@@ -98,22 +98,27 @@ export const addTodo = (formData) => async (dispatch) => {
 }
 
 // Delete todo
-export const deleteTodo = (id) => async (dispatch) => {
+export const deleteTodos = (ids) => async (dispatch) => {
     try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
         dispatch({
-            type: DELETE_TODO
+            type: DELETE_TODOS
         })
-        await axios.delete(`/api/todos/${id}`)
+        const res = await axios.delete(`/api/todos`, { data: ids }, config)
 
         dispatch({
-            type: DELETE_TODO_SUCCESS,
-            payload: id
+            type: DELETE_TODOS_SUCCESS,
+            payload: res.data
         })
 
-        toast.success('Todo deleted successfully')
+        toast.success('Todos deleted successfully')
     } catch (err) {
         dispatch({
-            type: DELETE_TODO_ERROR,
+            type: DELETE_TODOS_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
         })
     }

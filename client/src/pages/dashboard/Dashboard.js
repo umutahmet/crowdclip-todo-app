@@ -11,7 +11,7 @@ const initialState = {
 
 const Dashboard = () => {
     const { user } = useAuth()
-    const { todos, getTodos, addTodo } = useTodo()
+    const { todos, getTodos, addTodo, deleteTodos } = useTodo()
     const [formData, setFormData] = useState(initialState)
     const { text, reminderAt } = formData
 
@@ -32,15 +32,23 @@ const Dashboard = () => {
         setFormData(initialState)
     }
 
+    const handleDeleteTodos = (ids) => {
+        deleteTodos({ ids })
+    }
+
     return (
         <div className="container mx-auto mt-48">
-            <h1 className="text-5xl mb-6">
+            <h1 className="text-5xl mb-6 px-4">
                 Welcome back, <br />{' '}
                 <span className="text-secondary font-black capitalize">{user?.name}!</span>
             </h1>
             <div className="flex">
                 <div className="w-2/3 pr-16">
-                    {todos.length ? <TodoListing todos={todos} /> : <TodoEmptyState />}
+                    {todos.length ? (
+                        <TodoListing todos={todos} onDelete={handleDeleteTodos} />
+                    ) : (
+                        <TodoEmptyState />
+                    )}
                 </div>
                 <div className="w-1/3">
                     <TodoForm
