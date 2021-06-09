@@ -1,5 +1,5 @@
 import React from 'react'
-import { formatDate } from '../helpers/date'
+import { getDueDate } from '../helpers/date'
 
 const Todo = ({ todo, onToggleSelected }) => {
     return (
@@ -14,7 +14,9 @@ const Todo = ({ todo, onToggleSelected }) => {
                 />
                 <div className="text-xs">{todo.text}</div>
                 {todo.reminderAt && (
-                    <div className="text-xs ml-2">{formatDate(new Date(todo.reminderAt))}</div>
+                    <div className="text-xs font-bold ml-2">
+                        — Due {getDueDate(todo.reminderAt)}
+                    </div>
                 )}
             </label>
             <div className="ml-2">

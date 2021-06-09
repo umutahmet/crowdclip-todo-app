@@ -1,28 +1,13 @@
-const checkZero = (data) => {
-    if (data.length === 1) {
-        data = '0' + data
-    }
-    return data
-}
+import moment from 'moment'
 
-export const formatDate = (date, excludeTime) => {
-    if (!date) return
+export const getDueDate = (val) => {
+    if (!val) return
 
-    let day = date.getDate() + ''
-    let month = date.getMonth() + 1 + ''
-    let year = date.getFullYear() + ''
-    let hour = date.getHours() + ''
-    let minutes = date.getMinutes() + ''
+    const date = moment(val)
+    const today = moment().endOf('day')
+    const tomorrow = moment().add(1, 'day').endOf('day')
 
-    day = checkZero(day)
-    month = checkZero(month)
-    year = checkZero(year)
-    hour = checkZero(hour)
-    minutes = checkZero(minutes)
-
-    if (excludeTime) {
-        return day + '/' + month + '/' + year
-    }
-
-    return day + '/' + month + '/' + year + ' ' + hour + ':' + minutes
+    if (date < today) return 'today'
+    if (date < tomorrow) return 'tomorrow'
+    return moment(date).fromNow()
 }
