@@ -65,6 +65,12 @@ Additional:
 
 -   TailwindCSS (Can be hard on the eyes if you're used to SCSS but enables rapid UI development and reduced my time creating components for this app)
 
+## Design
+
+Please find the design here:
+
+https://www.figma.com/file/2u2Wp9WGbA23nugPlCltjg/Crowdclip-Todo-App?node-id=2%3A323
+
 ## Live demo
 
 Please find the app deployed to Heroku here:
