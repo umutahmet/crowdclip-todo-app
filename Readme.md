@@ -44,6 +44,14 @@ Having worked with unit tests in the past, I know how valuable they are to a pro
 
 This project hasn't been scrictly typed. Again, I've worked with codebases that have utilised both typescript / flow types in the past and capable of adding this in if I had more time.
 
+#### Mobile friendly
+
+This project is only compatiable with desktop, although would be easy to adapt to mobile and tablet with TailwindCSS given more time.
+
+#### User profile page
+
+This page hasn't been started and would be easy to complete re-using elements already in the app.
+
 ## My timesheet
 
 -   Codebase and DB setup = 2hrs
